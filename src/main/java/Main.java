@@ -33,6 +33,21 @@ public class Main {
                 index = i;
             }
         }
-        System.out.println("[" + index + "]" + " = " + max);
+//        System.out.println("[" + index + "]" + " = " + max);
+        Map<String, Integer> regionCount = new HashMap<>();
+        for (City city : cities) {
+            String region = city.getRegion();
+            if (!regionCount.containsKey(region)) {
+                regionCount.put(region, 1);
+            } else {
+                int count = regionCount.get(region);
+                regionCount.put(region, count + 1);
+            }
+        }
+        for (Map.Entry<String, Integer> entry : regionCount.entrySet()) {
+            String region = entry.getKey();
+            int count = entry.getValue();
+            System.out.println(region + " - " + count);
+        }
     }
 }
