@@ -18,6 +18,8 @@ public class Main {
                 cities.add(city);
             }
         }
+        cities.sort(Comparator.comparing(City::getName, String.CASE_INSENSITIVE_ORDER).reversed());
+        cities.sort(Comparator.comparing(City::getDistrict).thenComparing(City::getName).reversed());
         for (City city : cities) {
             System.out.println(city);
         }
