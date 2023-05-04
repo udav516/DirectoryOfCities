@@ -1,6 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         List<City> cities = new ArrayList<>();
@@ -18,10 +19,20 @@ public class Main {
                 cities.add(city);
             }
         }
-        cities.sort(Comparator.comparing(City::getName, String.CASE_INSENSITIVE_ORDER).reversed());
-        cities.sort(Comparator.comparing(City::getDistrict).thenComparing(City::getName).reversed());
+//        cities.sort(Comparator.comparing(City::getName, String.CASE_INSENSITIVE_ORDER).reversed());
+//        cities.sort(Comparator.comparing(City::getDistrict).thenComparing(City::getName).reversed());
         for (City city : cities) {
-            System.out.println(city);
+//            System.out.println(city);
         }
+        City[] array = cities.toArray(new City[0]);
+        int index = 0;
+        int max = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].getPopulation() > max) {
+                max = array[i].getPopulation();
+                index = i;
+            }
+        }
+        System.out.println("[" + index + "]" + " = " + max);
     }
 }
